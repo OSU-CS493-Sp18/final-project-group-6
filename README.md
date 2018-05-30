@@ -2,10 +2,12 @@
 		
 CS 493 - Spring 2018
 
-Bradley Imai
-Michael Rodriguez
-Nicholas Wong
-Shane Barrantes 
+Members:
+
+* Bradley Imai
+* Michael Rodriguez
+* Nicholas Wong
+* Shane Barrantes 
 					
 ## High-level description of the purpose of the API
 We will be creating a RESTful API that will allow a user to interact with resources consisting of beers, manufactures and
