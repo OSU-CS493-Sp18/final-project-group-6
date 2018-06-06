@@ -26,8 +26,6 @@ VALUES
 ('6', 'Guiness', '4.2', '45', '125', 'Stout'),
 ('7', 'Kiwanda', '5.4', '25', '125', 'Cream Ale'),
 ('8', 'Umbrella', '7.4', '60', '160', 'Pale Ale'),
-('9', 'Tsunami', '7', '45', '170', 'stout'),
-
-
+('9', 'Tsunami', '7', '45', '170', 'stout');
 
 
