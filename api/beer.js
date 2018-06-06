@@ -172,7 +172,6 @@ function getBeerByID(beerID, mysqlPool) {
       }
     });
   }).then((beer) => {
-    console.log("in beer");
     if (beer) {
       returnBeer = beer;
       return getReviewsByBeerID(beerID, mysqlPool);
@@ -180,15 +179,13 @@ function getBeerByID(beerID, mysqlPool) {
       return Promise.resolve(null);
     }
   }).then((reviews) => {
-    console.log("in reviews");
     if (reviews) {
       returnBeer.reviews = reviews;
-      return getManufacturerBybeerID(beerID, mysqlPool);
+      return getManufacturerByBeerID(beerID, mysqlPool);
     } else {
       return Promise.resolve(null);
     }
   }).then((manufacturer) => {
-    console.log("in manufacturer");
     if (manufacturer) {
       returnBeer.manufacturer = manufacturer;
       return Promise.resolve(returnBeer);
@@ -204,8 +201,6 @@ function getBeerByID(beerID, mysqlPool) {
 router.get('/:beerID', function (req, res, next) {
   const mysqlPool = req.app.locals.mysqlPool;
   const beerID = parseInt(req.params.beerID);
-  console.log(beerID);
-
   getBeerByID(beerID, mysqlPool)
     .then((beer) => {
       if (beer) {
