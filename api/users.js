@@ -5,9 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 const { generateAuthToken, requireAuthentication } = require('../lib/auth');
 
 
-const { getBusinessesByOwnerID } = require('./businesses');
 const { getReviewsByUserID } = require('./reviews');
-const { getPhotosByUserID } = require('./photos');
 
 
 function validateUserObject(user) {
@@ -21,8 +19,7 @@ function insertNewUser(user, mongoDB) {
         userID: user.userID,
         name: user.name,
         email: user.email,
-        password: passwordHash,
-        businesses: []
+        password: passwordHash
       };
       const usersCollection = mongoDB.collection('users');
       return usersCollection.insertOne(userDocument);
@@ -116,33 +113,7 @@ router.post('/login', function (req, res) {
   }
 });
 
-/*
- * Route to list all of a user's businesses.
- */
-router.get('/:userID/businesses', requireAuthentication, function (req, res) {
-  const mysqlPool = req.app.locals.mysqlPool;
-  const userID = parseInt(req.params.userID);
 
-  if (req.user !== req.params.userID) {
-    res.status(403).json({
-      error: "Unauthorized to access the specified resource"
-    });
-  } else {
-      getBusinessesByOwnerID(userID, mysqlPool)
-    .then((businesses) => {
-      if (businesses) {
-        res.status(200).json({ businesses: businesses });
-      } else {
-        next();
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: "Unable to fetch businesses.  Please try again later."
-      });
-    });
-  } 
-});
 
 /*
  * Route to list all of a user's reviews.
@@ -173,33 +144,7 @@ router.get('/:userID/reviews', requireAuthentication, function (req, res) {
 
 });
 
-/*
- * Route to list all of a user's photos.
- */
-router.get('/:userID/photos', requireAuthentication, function (req, res) {
-  const mysqlPool = req.app.locals.mysqlPool;
-  const userID = parseInt(req.params.userID);
 
-  if (req.user !== req.params.userID) {
-    res.status(403).json({
-      error: "Unauthorized to access the specified resource"
-    });
-  } else {
-    getPhotosByUserID(userID, mysqlPool)
-    .then((photos) => {
-      if (photos) {
-        res.status(200).json({ photos: photos });
-      } else {
-        next();
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: "Unable to fetch photos.  Please try again later."
-      });
-    });
-  }
-});
 
 /*
 Route to get info about specific user

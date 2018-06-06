@@ -9,7 +9,7 @@ const { getManufacturerBybeerID } = require('./manufacturer');
 const beerSchema = {
   manufacturerid: { required: true },
   name: { required: true },
-  apv: { required: true },
+  abv: { required: true },
   ibu: { required: true },
   calories: { required: true },
   type: { required: true }
@@ -109,7 +109,7 @@ function insertNewBeer(beer, mysqlPool) {
     beer = validation.extractValidFields(beer, beerSchema);
     beer.id = null;
     mysqlPool.query(
-      'INSERT INTO Beer SET ?',
+      'INSERT INTO beers SET ?',
       beer,
       function (err, result) {
         if (err) {
@@ -172,6 +172,7 @@ function getBeerByID(beerID, mysqlPool) {
       }
     });
   }).then((beer) => {
+    console.log("in beer");
     if (beer) {
       returnBeer = beer;
       return getReviewsByBeerID(beerID, mysqlPool);
@@ -179,6 +180,7 @@ function getBeerByID(beerID, mysqlPool) {
       return Promise.resolve(null);
     }
   }).then((reviews) => {
+    console.log("in reviews");
     if (reviews) {
       returnBeer.reviews = reviews;
       return getManufacturerBybeerID(beerID, mysqlPool);
@@ -186,6 +188,7 @@ function getBeerByID(beerID, mysqlPool) {
       return Promise.resolve(null);
     }
   }).then((manufacturer) => {
+    console.log("in manufacturer");
     if (manufacturer) {
       returnBeer.manufacturer = manufacturer;
       return Promise.resolve(returnBeer);
@@ -226,7 +229,7 @@ router.get('/:beerID', function (req, res, next) {
 function replaceBeerByID(beerID, beer, mysqlPool) {
   return new Promise((resolve, reject) => {
     beer = validation.extractValidFields(beer, beerSchema);
-    mysqlPool.query('UPDATE Beer SET ? WHERE id = ?', [ beer, beerID ], function (err, result) {
+    mysqlPool.query('UPDATE beers SET ? WHERE id = ?', [ beer, beerID ], function (err, result) {
       if (err) {
         reject(err);
       } else {
@@ -275,7 +278,7 @@ router.put('/:beerID', function (req, res, next) {
  */
 function deleteBeerByID(beerID, mysqlPool) {
   return new Promise((resolve, reject) => {
-    mysqlPool.query('DELETE FROM Beer WHERE id = ?', [ beerID ], function (err, result) {
+    mysqlPool.query('DELETE FROM beers WHERE id = ?', [ beerID ], function (err, result) {
       if (err) {
         reject(err);
       } else {

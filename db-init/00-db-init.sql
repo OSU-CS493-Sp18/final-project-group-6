@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: final
 -- ------------------------------------------------------
--- Server version 5.7.22
+-- Server version	5.7.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,13 +26,13 @@ CREATE TABLE `beers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `manufacturerid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `abv` decimal(10,0) NOT NULL,
+  `abv` double NOT NULL,
   `ibu` int(11) NOT NULL,
   `calories` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_manufacturerid` (`manufacturerid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `beers` (
 
 LOCK TABLES `beers` WRITE;
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;
-INSERT INTO `beers` VALUES (1,0,'Pacifico',5,6,146,'pilsner');
+INSERT INTO `beers` VALUES (1,0,'Pacifico',5.4,6,146,'Pilsner'),(2,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(3,2,'VooDoo Ranger',7,50,160,'IPA'),(4,3,'Citradelic',6,50,170,'Tangerine IPA'),(5,4,'Juice Haze IPA',7.2,42,230,'IPA'),(6,5,'Coors Light',4.2,10,102,'Lager'),(7,6,'Guiness',4.2,45,125,'Stout'),(8,7,'Kiwanda',5.4,25,125,'Cream Ale'),(9,8,'Umbrella',7.4,60,160,'Pale Ale'),(10,9,'Tsunami',7,45,170,'stout');
 /*!40000 ALTER TABLE `beers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-06-06 21:57:42
