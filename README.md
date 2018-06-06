@@ -85,3 +85,7 @@ The security mechanism that we will implement for our API will consist of a JWT 
 be stored in a simple Mongo database. This will ensure that are system is fully secure by combining a hashed password
 with salt to create a unique key. 
 
+
+[Link to Postman API endpoints](https://documenter.getpostman.com/view/4256353/RWEZTicJ)
+
+
