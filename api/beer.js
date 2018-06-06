@@ -21,7 +21,7 @@ const beerSchema = {
  */
 function getBeerCount(mysqlPool) {
   return new Promise((resolve, reject) => {
-    mysqlPool.query('SELECT COUNT(*) AS count FROM beer', function (err, results) {
+    mysqlPool.query('SELECT COUNT(*) AS count FROM beers', function (err, results) {
       if (err) {
         reject(err);
       } else {
@@ -48,7 +48,7 @@ function getBeerPage(page, totalCount, mysqlPool) {
     const offset = (page - 1) * numPerPage;
 
     mysqlPool.query(
-      'SELECT * FROM beer ORDER BY id LIMIT ?,?',
+      'SELECT * FROM beers ORDER BY id LIMIT ?,?',
       [ offset, numPerPage ],
       function (err, results) {
         if (err) {
@@ -155,7 +155,7 @@ router.post('/', function (req, res, next) {
  * containing information about the requested beer.  If no beer with
  * the specified ID exists, the returned Promise will resolve to null.
  */
-function getbeerByID(beerID, mysqlPool) {
+function getBeerByID(beerID, mysqlPool) {
   /*
    * Execute three sequential queries to get all of the info about the
    * specified beer, including its reviews and manufacturer.  If the original
@@ -164,7 +164,7 @@ function getbeerByID(beerID, mysqlPool) {
    */
   let returnBeer = {};
   return new Promise((resolve, reject) => {
-    mysqlPool.query('SELECT * FROM beer WHERE id = ?', [ beerID ], function (err, results) {
+    mysqlPool.query('SELECT * FROM beers WHERE id = ?', [ beerID ], function (err, results) {
       if (err) {
         reject(err);
       } else {
@@ -201,7 +201,9 @@ function getbeerByID(beerID, mysqlPool) {
 router.get('/:beerID', function (req, res, next) {
   const mysqlPool = req.app.locals.mysqlPool;
   const beerID = parseInt(req.params.beerID);
-  getbeerByID(beerID, mysqlPool)
+  console.log(beerID);
+
+  getBeerByID(beerID, mysqlPool)
     .then((beer) => {
       if (beer) {
         res.status(200).json(beer);
@@ -315,7 +317,7 @@ router.delete('/:beerID', function (req, res, next) {
 function getBeerByManufacturerID(manufacturerID, mysqlPool) {
   return new Promise((resolve, reject) => {
     mysqlPool.query(
-      'SELECT * FROM beer WHERE manufacturerid = ?',
+      'SELECT * FROM beers WHERE manufacturerid = ?',
       [ manufacturerid ],
       function (err, results) {
         if (err) {

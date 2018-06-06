@@ -30,6 +30,9 @@ services:
       MONGODB_PASSWORD: ${MONGODB_PASSWORD}
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
+    command: >
+      bash -c "./wait-for-it.sh mongodb:27017
+      && ./wait-for-it.sh redis:8000 -- node server.js" 
 
   mysql:
     image: mysql:5
