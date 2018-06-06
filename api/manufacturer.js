@@ -12,7 +12,6 @@ const manufacturerSchema = {
   state: { required: true },
   zip: { required: true },
   phone: { required: true },
-  website: {required: false }
 };
 
 /*
