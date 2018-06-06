@@ -172,6 +172,7 @@ function getBeerByID(beerID, mysqlPool) {
       }
     });
   }).then((beer) => {
+    console.log("in beer");
     if (beer) {
       returnBeer = beer;
       return getReviewsByBeerID(beerID, mysqlPool);
@@ -179,6 +180,7 @@ function getBeerByID(beerID, mysqlPool) {
       return Promise.resolve(null);
     }
   }).then((reviews) => {
+    console.log("in reviews");
     if (reviews) {
       returnBeer.reviews = reviews;
       return getManufacturerBybeerID(beerID, mysqlPool);
@@ -186,6 +188,7 @@ function getBeerByID(beerID, mysqlPool) {
       return Promise.resolve(null);
     }
   }).then((manufacturer) => {
+    console.log("in manufacturer");
     if (manufacturer) {
       returnBeer.manufacturer = manufacturer;
       return Promise.resolve(returnBeer);
