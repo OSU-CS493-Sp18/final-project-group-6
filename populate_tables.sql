@@ -67,8 +67,9 @@ CREATE TABLE manufacturers (
   city VARCHAR(255),
   state VARCHAR(255),
   zip INT NOT NULL,
-  phonenumber INT NOT NULL,
-)
+  phonenumber VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
 
 -- Insert into manufacturers --
 INSERT INTO manufacturers(beerid, city, state, zip, phonenumber)
@@ -81,7 +82,7 @@ values
 ('6', 'Salem', 'Oregon', '97301', '5037774567'),
 ('7', 'Tualatin', 'Oregon', '97305', '5038884567'),
 ('8', 'West Linn', 'Oregon', '97036', '5039994567'),
-('9', 'Vancouver', 'Washington', '98607', '5039999999'),
+('9', 'Vancouver', 'Washington', '98607', '5039999999');
 
 
 

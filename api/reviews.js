@@ -43,6 +43,7 @@ function insertNewReview(review, mysqlPool) {
   return new Promise((resolve, reject) => {
     review = validation.extractValidFields(review, reviewSchema);
     review.id = null;
+    console.log(review);
     mysqlPool.query(
       'INSERT INTO reviews SET ?',
       review,
@@ -68,11 +69,11 @@ router.post('/', function (req, res, next) {
      * If they're not, then insert their review into the DB.
      */
     hasUserReviewedBeer(req.body.userid, req.body.beerid, mysqlPool)
-      .then((userReviewedThisBeerAlready) => {
-        if (userReviewedThisBeerAlready) {
+      .then((hasUserReviewedBeer) => {
+        if (!hasUserReviewedBeer) {
           return Promise.reject(403);
         } else {
-          return insertNewReview(review, mysqlPool);
+          return insertNewReview(req.body, mysqlPool);
         }
       })
       .then((id) => {
@@ -85,6 +86,7 @@ router.post('/', function (req, res, next) {
         });
       })
       .catch((err) => {
+        console.log(err);
         if (err === 403) {
           res.status(403).json({
             error: "User has already posted a review of this beer"
