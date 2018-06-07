@@ -32,7 +32,7 @@ CREATE TABLE `beers` (
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_manufacturerid` (`manufacturerid`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `beers` (
 
 LOCK TABLES `beers` WRITE;
 /*!40000 ALTER TABLE `beers` DISABLE KEYS */;
-INSERT INTO `beers` VALUES (1,0,'Pacifico',5.4,6,146,'Pilsner'),(2,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(3,2,'VooDoo Ranger',7,50,160,'IPA'),(4,3,'Citradelic',6,50,170,'Tangerine IPA'),(5,4,'Juice Haze IPA',7.2,42,230,'IPA'),(6,5,'Coors Light',4.2,10,102,'Lager'),(7,6,'Guiness',4.2,45,125,'Stout'),(8,7,'Kiwanda',5.4,25,125,'Cream Ale'),(9,8,'Umbrella',7.4,60,160,'Pale Ale'),(10,9,'Tsunami',7,45,170,'stout'),(11,0,'Pacifico',5.4,6,146,'Pilsner'),(12,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(13,2,'VooDoo Ranger',7,50,160,'IPA'),(14,3,'Citradelic',6,50,170,'Tangerine IPA'),(15,4,'Juice Haze IPA',7.2,42,230,'IPA'),(16,5,'Coors Light',4.2,10,102,'Lager'),(17,6,'Guiness',4.2,45,125,'Stout'),(18,7,'Kiwanda',5.4,25,125,'Cream Ale'),(19,8,'Umbrella',7.4,60,160,'Pale Ale'),(20,9,'Tsunami',7,45,170,'stout'),(21,0,'Pacifico',5.4,6,146,'Pilsner'),(22,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(23,2,'VooDoo Ranger',7,50,160,'IPA'),(24,3,'Citradelic',6,50,170,'Tangerine IPA'),(25,4,'Juice Haze IPA',7.2,42,230,'IPA'),(26,5,'Coors Light',4.2,10,102,'Lager'),(27,6,'Guiness',4.2,45,125,'Stout'),(28,7,'Kiwanda',5.4,25,125,'Cream Ale'),(29,8,'Umbrella',7.4,60,160,'Pale Ale'),(30,9,'Tsunami',7,45,170,'stout'),(31,0,'Pacifico',5.4,6,146,'Pilsner'),(32,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(33,2,'VooDoo Ranger',7,50,160,'IPA'),(34,3,'Citradelic',6,50,170,'Tangerine IPA'),(35,4,'Juice Haze IPA',7.2,42,230,'IPA'),(36,5,'Coors Light',4.2,10,102,'Lager'),(37,6,'Guiness',4.2,45,125,'Stout'),(38,7,'Kiwanda',5.4,25,125,'Cream Ale'),(39,8,'Umbrella',7.4,60,160,'Pale Ale'),(40,9,'Tsunami',7,45,170,'stout'),(41,0,'Pacifico',5.4,6,146,'Pilsner'),(42,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(43,2,'VooDoo Ranger',7,50,160,'IPA'),(44,3,'Citradelic',6,50,170,'Tangerine IPA'),(45,4,'Juice Haze IPA',7.2,42,230,'IPA'),(46,5,'Coors Light',4.2,10,102,'Lager'),(47,6,'Guiness',4.2,45,125,'Stout'),(48,7,'Kiwanda',5.4,25,125,'Cream Ale'),(49,8,'Umbrella',7.4,60,160,'Pale Ale'),(50,9,'Tsunami',7,45,170,'stout'),(51,0,'Pacifico',5.4,6,146,'Pilsner'),(52,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(53,2,'VooDoo Ranger',7,50,160,'IPA'),(54,3,'Citradelic',6,50,170,'Tangerine IPA'),(55,4,'Juice Haze IPA',7.2,42,230,'IPA'),(56,5,'Coors Light',4.2,10,102,'Lager'),(57,6,'Guiness',4.2,45,125,'Stout'),(58,7,'Kiwanda',5.4,25,125,'Cream Ale'),(59,8,'Umbrella',7.4,60,160,'Pale Ale'),(60,9,'Tsunami',7,45,170,'stout'),(61,0,'Pacifico',5.4,6,146,'Pilsner'),(62,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(63,2,'VooDoo Ranger',7,50,160,'IPA'),(64,3,'Citradelic',6,50,170,'Tangerine IPA'),(65,4,'Juice Haze IPA',7.2,42,230,'IPA'),(66,5,'Coors Light',4.2,10,102,'Lager'),(67,6,'Guiness',4.2,45,125,'Stout'),(68,7,'Kiwanda',5.4,25,125,'Cream Ale'),(69,8,'Umbrella',7.4,60,160,'Pale Ale'),(70,9,'Tsunami',7,45,170,'stout');
+INSERT INTO `beers` VALUES (1,10,'Pacifico',5.4,6,146,'Pilsner'),(2,1,'Fat Tire',5.2,22,160,'Belgian Style Ale'),(3,2,'VooDoo Ranger',7,50,160,'IPA'),(4,3,'Citradelic',6,50,170,'Tangerine IPA'),(5,4,'Juice Haze IPA',7.2,42,230,'IPA'),(6,5,'Coors Light',4.2,10,102,'Lager'),(7,6,'Guiness',4.2,45,125,'Stout'),(8,7,'Kiwanda',5.4,25,125,'Cream Ale'),(9,8,'Umbrella',7.4,60,160,'Pale Ale'),(10,9,'Tsunami',7,45,170,'stout');
 /*!40000 ALTER TABLE `beers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,8 +55,9 @@ DROP TABLE IF EXISTS `manufacturers`;
 CREATE TABLE `manufacturers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `beerid` int(11) NOT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `state` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
   `zip` int(11) NOT NULL,
   `phonenumber` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -69,7 +70,7 @@ CREATE TABLE `manufacturers` (
 
 LOCK TABLES `manufacturers` WRITE;
 /*!40000 ALTER TABLE `manufacturers` DISABLE KEYS */;
-INSERT INTO `manufacturers` VALUES (1,10,'Portland','Oregon',97220,'5031234567'),(2,2,'Bend','Oregon',97001,'5033214567'),(3,3,'Corvallis','Oregon',97330,'5034444567'),(4,4,'Eugene','Oregon',97401,'5035554567'),(5,5,'Tigad','Oregon',97224,'5036664567'),(6,6,'Salem','Oregon',97301,'5037774567'),(7,7,'Tualatin','Oregon',97305,'5038884567'),(8,8,'West Linn','Oregon',97036,'5039994567'),(9,9,'Vancouver','Washington',98607,'5039999999');
+INSERT INTO `manufacturers` VALUES (1,10,'Heineken','Portland','Oregon',97220,'5031234567'),(2,2,'Carlsberg','Bend','Oregon',97001,'5033214567'),(3,3,'Asahi','Corvallis','Oregon',97330,'5034444567'),(4,4,'Anheuser-Busch InBev','Eugene','Oregon',97401,'5035554567'),(5,5,'China Resources Snow Breweries','Tigad','Oregon',97224,'5036664567'),(6,6,'Molson Coors Brewing','Salem','Oregon',97301,'5037774567'),(7,7,'Tsingtao Brewery Group','Tualatin','Oregon',97305,'5038884567'),(8,8,'Yanjing','West Linn','Oregon',97036,'5039994567'),(9,9,'Kirin','Vancouver','Washington',98607,'5039999999');
 /*!40000 ALTER TABLE `manufacturers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-07  0:55:04
+-- Dump completed on 2018-06-07  2:04:43

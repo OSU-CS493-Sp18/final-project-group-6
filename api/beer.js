@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const validation = require('../lib/validation');
 const { getReviewsByBeerID } = require('./reviews');
-const { getManufacturerBybeerID } = require('./manufacturer');
+const { getManufacturerByBeerID } = require('./manufacturer');
+
 
 /*
  * Schema describing required/optional fields of a beer object.
@@ -210,6 +211,7 @@ router.get('/:beerID', function (req, res, next) {
       }
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         error: "Unable to fetch beer.  Please try again later."
       });
