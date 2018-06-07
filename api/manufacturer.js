@@ -7,12 +7,31 @@ const { getBeerByID } = require('./beer');
  * Schema describing required/optional fields of a manufacturer object.
  */
 const manufacturerSchema = {
+  beerid: {requred: true },
   name: { required: true },
   city: { required: true },
   state: { required: true },
   zip: { required: true },
-  phone: { required: true },
+  phonenumber: { required: true },
 };
+
+/*
+ * Executes a MySQL query to fetch a manufacturer based on beer ID.
+ * Returns a Promise that resolves to an object containing the requested
+ * manufacturer.  If no manufacturer with the specified beer ID exists, the returned Promise
+ * will resolve to null.
+ */
+function getManufacturerByBeerID(beerID, mysqlPool) {
+  return new Promise((resolve, reject) => {
+    mysqlPool.query('SELECT * FROM manufacturers WHERE beerid = ?', [ beerID ], function (err, results) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results[0]);
+      }
+    });
+  });
+}
 
 /*
  * Executes a MySQL query to fetch the total number of manufacturer. Returns
@@ -99,6 +118,8 @@ router.get('/', function (req, res) {
     });
 });
 
+
+
 /*
  * Executes a MySQL query to insert a new manufacturer into the database.  Returns
  * a Promise that resolves to the ID of the newly-created manufacturer entry.
@@ -137,6 +158,7 @@ router.post('/', function (req, res, next) {
         });
       })
       .catch((err) => {
+        console.log(err);
         res.status(500).json({
           error: "Error inserting manufacturer into DB.  Please try again later."
         });
@@ -147,6 +169,24 @@ router.post('/', function (req, res, next) {
     });
   }
 });
+
+/*
+ * Executes a MySQL query to fetch a single specified manufacturer based on its ID.
+ * Returns a Promise that resolves to an object containing the requested
+ * manufacturer.  If no manufacturer with the specified ID exists, the returned Promise
+ * will resolve to null.
+ */
+function getManufacturerByID(manufacturerID, mysqlPool) {
+  return new Promise((resolve, reject) => {
+    mysqlPool.query('SELECT * FROM manufacturers WHERE id = ?', [ manufacturerID ], function (err, results) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results[0]);
+      }
+    });
+  });
+}
 
 /*
  * Route to fetch info about a specific manufacturer.
@@ -194,7 +234,7 @@ router.put('/:manufacturerID', function (req, res, next) {
   const mysqlPool = req.app.locals.mysqlPool;
   const manufacturerID = parseInt(req.params.manufacturerID);
   if (validation.validateAgainstSchema(req.body, manufacturerSchema)) {
-    replaceManufcaturerByID(manufacturerID, req.body, mysqlPool)
+    replaceManufacturerByID(manufacturerID, req.body, mysqlPool)
       .then((updateSuccessful) => {
         if (updateSuccessful) {
           res.status(200).json({
@@ -226,8 +266,9 @@ router.put('/:manufacturerID', function (req, res, next) {
  */
 function deleteManufacturerByID(manufacturerID, mysqlPool) {
   return new Promise((resolve, reject) => {
-    mysqlPool.query('DELETE FROM manufacturers WHERE id = ?', [ manufacturersID ], function (err, result) {
+    mysqlPool.query('DELETE FROM manufacturers WHERE id = ?', [ manufacturerID ], function (err, result) {
       if (err) {
+        console.log(err);
         reject(err);
       } else {
         resolve(result.affectedRows > 0);
@@ -252,6 +293,7 @@ router.delete('/:manufacturerID', function (req, res, next) {
       }
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         error: "Unable to delete manufacturer.  Please try again later."
       });
@@ -282,4 +324,4 @@ function getBeerByManufacturerID(manufacturerID, mysqlPool) {
 }
 
 exports.router = router;
-exports.getBeerByManufacturerID = getBeerByManufacturerID;
+exports.getManufacturerByBeerID = getManufacturerByBeerID;
