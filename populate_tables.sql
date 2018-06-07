@@ -57,11 +57,31 @@ values
 ('1', '2.5', 'Bad Beer', '9', '8'),
 ('2', '3.5', '', '10', '9');
 
+-- Drop Manufacturers table --
+DROP TABLE IF EXISTS `manufacturers`;
 
+-- Create manufacturers table --
+CREATE TABLE manufacturers (
+  id INT NOT NULL AUTO_INCREMENT,
+  beerid INT NOT NULL,
+  city VARCHAR(255),
+  state VARCHAR(255),
+  zip INT NOT NULL,
+  phonenumber INT NOT NULL,
+)
 
-
-
-
+-- Insert into manufacturers --
+INSERT INTO manufacturers(beerid, city, state, zip, phonenumber)
+values
+('10', 'Portland', 'Oregon', '97220', '5031234567'),
+('2', 'Bend', 'Oregon', '97001', '5033214567'),
+('3', 'Corvallis', 'Oregon', '97330', '5034444567'),
+('4', 'Eugene', 'Oregon', '97401', '5035554567'),
+('5', 'Tigad', 'Oregon', '97224', '5036664567'),
+('6', 'Salem', 'Oregon', '97301', '5037774567'),
+('7', 'Tualatin', 'Oregon', '97305', '5038884567'),
+('8', 'West Linn', 'Oregon', '97036', '5039994567'),
+('9', 'Vancouver', 'Washington', '98607', '5039999999'),
 
 
 
