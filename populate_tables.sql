@@ -55,8 +55,39 @@ values
 ('2', '3.5', '', '7', '6'),
 ('3', '4.5', '', '8', '7'),
 ('1', '2.5', 'Bad Beer', '9', '8'),
-('2', '3.5', '', '10', '9');
-
+('2', '3.5', '', '10', '9'),
+('2', '1', 'Cheap, not ideal.', '1', '22'),
+('2', '1', 'Do not drink this', '2', '23'),
+('2', '1', 'Try the IPA.', '3', '24'),
+('1', '2', 'Try the Pale Ale.', '4', '22'),
+('1', '2', 'BEST BEER', '5', '25'),
+('1', '2', 'Beer was okay', '6', '32'),
+('2', '3.5', 'Solid beer, but expensive', '7', '39'),
+('2', '3', 'One of my favorite beers', '8', '42'),
+('1', '3', 'Bad Beer', '9', '51'),
+('2', '2', 'ayy good beer', '10', '69'),
+('3', '1', 'This beer is very expensive.', '1', '34'),
+('3', '1', 'Too expensive', '2', '33'),
+('3', '1', 'Not my favorite beer for the price.', '3', '51'),
+('3', '2', 'Try a different beer.', '4', '52'),
+('3', '2', 'this beer wasnt for me', '5', '53'),
+('3', '2', 'it was okay', '6', '54'),
+('3', '1', 'ehhhhh', '8', '55'),
+('3', '2', 'Bad Beer', '9', '56'),
+('3', '2', 'okay beer', '10', '57'),
+('1', '3', 'One of my favorite beers', '8', '58'),
+('1', '3', 'Bad Beer', '9', '31'),
+('1', '2', 'ayy good beer', '10', '20'),
+('1', '1', 'This beer is very expensive.', '1', '23'),
+('1', '1', 'Too expensive', '2', '44'),
+('1', '1', 'Not my favorite beer for the price.', '3', '45'),
+('1', '2', 'Try a different beer.', '4', '66'),
+('1', '2', 'this beer wasnt for me', '5', '54'),
+('1', '2', 'it was okay', '6', '44'),
+('1', '1', 'ehhhhh', '8', '41'),
+('1', '2', 'Bad Beer', '9', '39'),
+('1', '2', 'okay beer', '10', '38');
+  
 -- Drop Manufacturers table --
 DROP TABLE IF EXISTS `manufacturers`;
 
