@@ -128,7 +128,7 @@ CREATE TABLE `photos` (
 
 LOCK TABLES `photos` WRITE;
 /*!40000 ALTER TABLE `photos` DISABLE KEYS */;
-INSERT INTO `photos` VALUES (1,'010101010011111','What a nice beer.',1,10), (2,'010101010011111','What a nice beer.',2,10), (3,'010101010011111','What an ugly beer.',3,10), (4,'010101010011111','What a sexy beer.',4,10), (5,'010101010011111','What a perfect beer.',5,10), (6,'010101010011111','What a joke of a beer.',6,10), (7,'010101010011111','What a mean beer.',7,10), (8,'010101010011111','What a nice beer.',8,10), (9,'010101010011111','What a sweet beer.',9,10);
+INSERT INTO `photos` VALUES (1,'010101010011111','What a nice beer.',1,2), (2,'010101010011111','What a nice beer.',2,1), (3,'010101010011111','What an ugly beer.',3,5), (4,'010101010011111','What a sexy beer.',4,4), (5,'010101010011111','What a perfect beer.',5,6), (6,'010101010011111','What a joke of a beer.',6,10), (7,'010101010011111','What a mean beer.',7,8), (8,'010101010011111','What a nice beer.',8,9), (9,'010101010011111','What a sweet beer.',9,3);
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
