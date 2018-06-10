@@ -17,7 +17,7 @@ const photosSchema = {
  * specified user has already photoed the specified business or false
  * otherwise.
  */
-function hasUserphotoedBeer(userID, beerID, mysqlPool) {
+function hasUserPhotoedBeer(userID, beerID, mysqlPool) {
   return new Promise((resolve, reject) => {
     mysqlPool.query(
       'SELECT COUNT(*) AS count FROM photos WHERE userid = ? AND beerid = ?',
