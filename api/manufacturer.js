@@ -27,7 +27,7 @@ function getManufacturerByBeerID(beerID, mysqlPool) {
       if (err) {
         reject(err);
       } else {
-        resolve(results[0]);
+        resolve(results);
       }
     });
   });
