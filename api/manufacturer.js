@@ -7,11 +7,11 @@ const { getBeerByID } = require('./beer');
  * Schema describing required/optional fields of a manufacturer object.
  */
 const manufacturerSchema = {
-  name: { required: true },
+  beerid: { required: true },
   city: { required: true },
   state: { required: true },
   zip: { required: true },
-  phone: { required: true },
+  phonenumber: { required: true },
 };
 
 /*
