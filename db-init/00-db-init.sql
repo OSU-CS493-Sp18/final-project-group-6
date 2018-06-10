@@ -99,7 +99,9 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,1,4.5,'Cheap, delicious beer.',1,10),(2,2,3.5,'',2,1),(3,1,3.5,'Try the IPA.',3,2),(4,3,4.5,'Try the Pale Ale.',4,3),(5,3,5,'BEST BEER',5,4),(6,2,3,'Beer was okay',6,5),(7,2,3.5,'',7,6),(8,3,4.5,'',8,7),(9,1,2.5,'Bad Beer',9,8),(10,2,3.5,'',10,9);
+INSERT INTO `reviews` VALUES (1,1,4.5,'Cheap, delicious beer.',1,10),(2,2,3.5,'',2,1),(3,1,3.5,'Try the IPA.',3,2),(4,3,4.5,'Try the Pale Ale.',4,3),(5,3,5,'BEST BEER',5,4),(6,2,3,'Beer was okay',6,5),(7,2,3.5,'',7,6),(8,3,4.5,'',8,7),(9,1,2.5,'Bad Beer',9,8),(10,2,3.5,'',10,9),(11,1,5,'Cheap, not ideal.',1,22),(12,1,5,'Do not drink this',2,23),(13,1,5,'Try the IPA.',3,24),(14,2,5,'Try the Pale Ale.',4,22),(15,2,5,'BEST BEER',5,25),(16,2,4,'Beer was okay',6,32),(17,3,4,'Solid beer, but expensive',7,39),(18,3,4,'One of my favorite beers',8,42),(19,3,3,'Bad Beer',9, 51),(20,2,3,'ayy good beer',10,69),(21,1,3,'This beer is very expensive.',1,34),(22,1,3,'Too expensive',2,33),(23,1,3,'Not my favorite beer for the price.',3,51),(24,2,3,'Try a different beer.',4,52),(25,2,3,'this beer wasnt for me',5,53),(26,2,3,'it was okay',6,54),(27,1,3,'ehhhhh',8,55),(28,2,2,'Bad Beer',9,56),(29,2,2,'okay beer',10,57),(30,3,2,'One of my favorite beers',8,58),(31,3,2,'Bad Beer',9,31),(32,2,2,'ayy good beer',10,20),(33,1,2,'This beer is very expensive.',1,23),(34,1,1,'Too expensive',2,44),(35,1,1,'Not my favorite beer for the price.',3,45),(36,2,1,'Try a different beer.',4,66),(37,2,1,'this beer wasnt for me',5,54),(38,2,1,'it was okay',6,44),(39,1,1,'ehhhhh',8,41),(40,2,1,'Bad Beer', 9, 39),(41,2,1,'okay beer',10,38);
+
+
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
