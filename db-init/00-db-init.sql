@@ -102,6 +102,35 @@ LOCK TABLES `reviews` WRITE;
 INSERT INTO `reviews` VALUES (1,1,4.5,'Cheap, delicious beer.',1,10),(2,2,3.5,'',2,1),(3,1,3.5,'Try the IPA.',3,2),(4,3,4.5,'Try the Pale Ale.',4,3),(5,3,5,'BEST BEER',5,4),(6,2,3,'Beer was okay',6,5),(7,2,3.5,'',7,6),(8,3,4.5,'',8,7),(9,1,2.5,'Bad Beer',9,8),(10,2,3.5,'',10,9);
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `photos`
+--
+
+DROP TABLE IF EXISTS `photos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) NOT NULL,
+  `caption` varchar(255) DEFAULT NULL,
+  `userid` int(11) NOT NULL,
+  `beerid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_beerid` (`beerid`),
+  CONSTRAINT `photos_ibfk_1` FOREIGN KEY (`beerid`) REFERENCES `beers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `photos`
+--
+
+LOCK TABLES `photos` WRITE;
+/*!40000 ALTER TABLE `photos` DISABLE KEYS */;
+
+/*!40000 ALTER TABLE `photos` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
