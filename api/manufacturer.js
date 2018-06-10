@@ -194,7 +194,7 @@ router.put('/:manufacturerID', function (req, res, next) {
   const mysqlPool = req.app.locals.mysqlPool;
   const manufacturerID = parseInt(req.params.manufacturerID);
   if (validation.validateAgainstSchema(req.body, manufacturerSchema)) {
-    replaceManufcaturerByID(manufacturerID, req.body, mysqlPool)
+    replaceManufacturerByID(manufacturerID, req.body, mysqlPool)
       .then((updateSuccessful) => {
         if (updateSuccessful) {
           res.status(200).json({
@@ -226,7 +226,7 @@ router.put('/:manufacturerID', function (req, res, next) {
  */
 function deleteManufacturerByID(manufacturerID, mysqlPool) {
   return new Promise((resolve, reject) => {
-    mysqlPool.query('DELETE FROM manufacturers WHERE id = ?', [ manufacturersID ], function (err, result) {
+    mysqlPool.query('DELETE FROM manufacturers WHERE id = ?', [ manufacturerID ], function (err, result) {
       if (err) {
         reject(err);
       } else {
