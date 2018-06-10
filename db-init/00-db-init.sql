@@ -104,6 +104,35 @@ INSERT INTO `reviews` VALUES (1,1,4.5,'Cheap, delicious beer.',1,10),(2,2,3.5,''
 
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `photos`
+--
+
+DROP TABLE IF EXISTS `photos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) NOT NULL,
+  `caption` varchar(255) DEFAULT NULL,
+  `userid` int(11) NOT NULL,
+  `beerid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_beerid` (`beerid`),
+  CONSTRAINT `photos_ibfk_1` FOREIGN KEY (`beerid`) REFERENCES `beers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `photos`
+--
+
+LOCK TABLES `photos` WRITE;
+/*!40000 ALTER TABLE `photos` DISABLE KEYS */;
+INSERT INTO `photos` VALUES (1,'010101010011111','What a nice beer.',1,2), (2,'010101010011111','What a nice beer.',2,1), (3,'010101010011111','What an ugly beer.',3,5), (4,'010101010011111','What a sexy beer.',4,4), (5,'010101010011111','What a perfect beer.',5,6), (6,'010101010011111','What a joke of a beer.',6,10), (7,'010101010011111','What a mean beer.',7,8), (8,'010101010011111','What a nice beer.',8,9), (9,'010101010011111','What a sweet beer.',9,3);
+/*!40000 ALTER TABLE `photos` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
