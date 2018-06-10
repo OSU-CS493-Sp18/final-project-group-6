@@ -66,9 +66,9 @@ router.post('/', function (req, res, next) {
      * Make sure the user is not trying to photo the same business twice.
      * If they're not, then insert their photo into the DB.
      */
-    hasUserphotoedBeer(req.body.userid, req.body.beerid, mysqlPool)
-      .then((hasUserphotoedBeer) => {
-        if (!hasUserphotoedBeer) {
+    hasUserPhotoedBeer(req.body.userid, req.body.beerid, mysqlPool)
+      .then((hasUserPhotoedBeer) => {
+        if (!hasUserPhotoedBeer) {
           return Promise.reject(403);
         } else {
           return insertNewphoto(req.body, mysqlPool);
