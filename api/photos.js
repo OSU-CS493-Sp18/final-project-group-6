@@ -11,8 +11,141 @@ const photosSchema = {
   filename: { required: true }
 };
 
+/*
+ * Executes a MySQL query to verfy whether a given user has already photoed
+ * a specified beer.  Returns a Promise that resolves to true if the
+ * specified user has already photoed the specified business or false
+ * otherwise.
+ */
+function hasUserphotoedBeer(userID, beerID, mysqlPool) {
+  return new Promise((resolve, reject) => {
+    mysqlPool.query(
+      'SELECT COUNT(*) AS count FROM photos WHERE userid = ? AND beerid = ?',
+      [ userID, beerID ],
+      function (err, results) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results[0].count > 0);
+        }
+      }
+    );
+  });
+}
 
+/*
+ * Executes a MySQL query to insert a new photo into the database.  Returns
+ * a Promise that resolves to the ID of the newly-created photo entry.
+ */
+function insertNewphoto(photo, mysqlPool) {
+  return new Promise((resolve, reject) => {
+    photo = validation.extractValidFields(photo, photoschema);
+    photo.id = null;
+    console.log(photo);
+    mysqlPool.query(
+      'INSERT INTO photos SET ?',
+      photo,
+      function (err, result) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result.insertId);
+        }
+      }
+    );
+  });
+}
 
+/*
+ * Route to create a new photo.
+ */
+router.post('/', function (req, res, next) {
+  const mysqlPool = req.app.locals.mysqlPool;
+  if (validation.validateAgainstSchema(req.body, photoschema)) {
+    /*
+     * Make sure the user is not trying to photo the same business twice.
+     * If they're not, then insert their photo into the DB.
+     */
+    hasUserphotoedBeer(req.body.userid, req.body.beerid, mysqlPool)
+      .then((hasUserphotoedBeer) => {
+        if (!hasUserphotoedBeer) {
+          return Promise.reject(403);
+        } else {
+          return insertNewphoto(req.body, mysqlPool);
+        }
+      })
+      .then((id) => {
+        res.status(201).json({
+          id: id,
+          links: {
+            photo: `/photos/${id}`,
+            beer: `/beer/${req.body.beerid}`
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === 403) {
+          res.status(403).json({
+            error: "User has already posted a photo of this beer"
+          });
+        } else {
+          res.status(500).json({
+            error: "Error inserting photo into DB.  Please try again later."
+          });
+        }
+      });
+  } else {
+    res.status(400).json({
+      error: "Request body is not a valid photo object."
+    });
+  }
+});
+
+/*
+ * Executes a MySQL query to fetch a single specified photo based on its ID.
+ * Returns a Promise that resolves to an object containing the requested
+ * photo.  If no photo with the specified ID exists, the returned Promise
+ * will resolve to null.
+ */
+function getphotoByID(photoID, mysqlPool) {
+  return new Promise((resolve, reject) => {
+    mysqlPool.query('SELECT * FROM photos WHERE id = ?', [ photoID ], function (err, results) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results[0]);
+      }
+    });
+  });
+}
+
+/*
+ * Route to fetch info about a specific photo.
+ */
+router.get('/:photoID', function (req, res, next) {
+  const mysqlPool = req.app.locals.mysqlPool;
+  const photoID = parseInt(req.params.photoID);
+  getphotoByID(photoID, mysqlPool)
+    .then((photo) => {
+      if (photo) {
+        res.status(200).json(photo);
+      } else {
+        next();
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: "Unable to fetch photo.  Please try again later."
+      });
+    });
+});
+
+/*
+ * Executes a MySQL query to replace a specified photo with new data.
+ * Returns a Promise that resolves to true if the photo specified by
+ * `photoID` existed and was successfully updated or to false otherwise.
+ */
 function replacephotoByID(photoID, photo, mysqlPool) {
   return new Promise((resolve, reject) => {
     photo = validation.extractValidFields(photo, photoschema);
