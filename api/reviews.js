@@ -5,11 +5,11 @@ const validation = require('../lib/validation');
  * Schema describing required/optional fields of a review object.
  */
 const reviewSchema = {
-  userid: { required: true },
-  beerid: { required: true },
   dollars: { required: true },
   stars: { required: true },
-  review: { required: false }
+  review: { required: false },
+  userid: { required: true },
+  beerid: { required: true }
 };
 
 
@@ -142,8 +142,10 @@ function replaceReviewByID(reviewID, review, mysqlPool) {
     review = validation.extractValidFields(review, reviewSchema);
     mysqlPool.query('UPDATE reviews SET ? WHERE id = ?', [ review, reviewID ], function (err, result) {
       if (err) {
+        console.log(err);
         reject(err);
       } else {
+        console.log("no error");
         resolve(result.affectedRows > 0);
       }
     });
@@ -165,6 +167,8 @@ router.put('/:reviewID', function (req, res, next) {
      */
     getReviewByID(reviewID, mysqlPool)
       .then((existingReview) => {
+        console.log(existingReview);
+        console.log(updatedReview);
         if (existingReview) {
           if (updatedReview.beerid === existingReview.beerid && updatedReview.userid === existingReview.userid) {
             return replaceReviewByID(reviewID, updatedReview, mysqlPool);

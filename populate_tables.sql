@@ -17,7 +17,7 @@ CREATE TABLE beers (
 -- Insert initial values into businesses table --
 INSERT INTO beers (manufacturerid, name, abv, ibu, calories, type)
 VALUES
-('0', 'Pacifico', '5.4', '6', '146', 'Pilsner'),
+('10', 'Pacifico', '5.4', '6', '146', 'Pilsner'),
 ('1', 'Fat Tire', '5.2', '22', '160', 'Belgian Style Ale'),
 ('2', 'VooDoo Ranger', '7.0', '50', '160', 'IPA'),
 ('3', 'Citradelic', '6', '50', '170', 'Tangerine IPA'),
@@ -65,25 +65,26 @@ DROP TABLE IF EXISTS `manufacturers`;
 CREATE TABLE manufacturers (
   id INT NOT NULL AUTO_INCREMENT,
   beerid INT NOT NULL,
-  city VARCHAR(255),
-  state VARCHAR(255),
+  name VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  state VARCHAR(255) NOT NULL,
   zip INT NOT NULL,
   phonenumber VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 -- Insert into manufacturers --
-INSERT INTO manufacturers(beerid, city, state, zip, phonenumber)
+INSERT INTO manufacturers(beerid, name, city, state, zip, phonenumber)
 values
-('10', 'Portland', 'Oregon', '97220', '5031234567'),
-('2', 'Bend', 'Oregon', '97001', '5033214567'),
-('3', 'Corvallis', 'Oregon', '97330', '5034444567'),
-('4', 'Eugene', 'Oregon', '97401', '5035554567'),
-('5', 'Tigad', 'Oregon', '97224', '5036664567'),
-('6', 'Salem', 'Oregon', '97301', '5037774567'),
-('7', 'Tualatin', 'Oregon', '97305', '5038884567'),
-('8', 'West Linn', 'Oregon', '97036', '5039994567'),
-('9', 'Vancouver', 'Washington', '98607', '5039999999');
+('10', 'Heineken', 'Portland', 'Oregon', '97220', '5031234567'),
+('2', 'Carlsberg', 'Bend', 'Oregon', '97001', '5033214567'),
+('3', 'Asahi', 'Corvallis', 'Oregon', '97330', '5034444567'),
+('4', 'Anheuser-Busch InBev', 'Eugene', 'Oregon', '97401', '5035554567'),
+('5', 'China Resources Snow Breweries', 'Tigad', 'Oregon', '97224', '5036664567'),
+('6', 'Molson Coors Brewing', 'Salem', 'Oregon', '97301', '5037774567'),
+('7', 'Tsingtao Brewery Group', 'Tualatin', 'Oregon', '97305', '5038884567'),
+('8', 'Yanjing', 'West Linn', 'Oregon', '97036', '5039994567'),
+('9', 'Kirin', 'Vancouver', 'Washington', '98607', '5039999999');
 
 
 
