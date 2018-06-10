@@ -12,28 +12,6 @@ const photoschema = {
 };
 
 /*
- * Executes a MySQL query to verfy whether a given user has already photoed
- * a specified beer.  Returns a Promise that resolves to true if the
- * specified user has already photoed the specified business or false
- * otherwise.
- */
-function hasUserPhotoedBeer(userID, beerID, mysqlPool) {
-  return new Promise((resolve, reject) => {
-    mysqlPool.query(
-      'SELECT COUNT(*) AS count FROM photos WHERE userid = ? AND beerid = ?',
-      [ userID, beerID ],
-      function (err, results) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results[0].count > 0);
-        }
-      }
-    );
-  });
-}
-
-/*
  * Executes a MySQL query to insert a new photo into the database.  Returns
  * a Promise that resolves to the ID of the newly-created photo entry.
  */
@@ -66,14 +44,7 @@ router.post('/', function (req, res, next) {
      * Make sure the user is not trying to photo the same business twice.
      * If they're not, then insert their photo into the DB.
      */
-    hasUserPhotoedBeer(req.body.userid, req.body.beerid, mysqlPool)
-      .then((hasUserPhotoedBeer) => {
-        if (!hasUserPhotoedBeer) {
-          return Promise.reject(403);
-        } else {
-          return insertNewphoto(req.body, mysqlPool);
-        }
-      })
+    insertNewphoto(req.body, mysqlPool)
       .then((id) => {
         res.status(201).json({
           id: id,
@@ -83,18 +54,6 @@ router.post('/', function (req, res, next) {
           }
         });
       })
-      .catch((err) => {
-        console.log(err);
-        if (err === 403) {
-          res.status(403).json({
-            error: "User has already posted a photo of this beer"
-          });
-        } else {
-          res.status(500).json({
-            error: "Error inserting photo into DB.  Please try again later."
-          });
-        }
-      });
   } else {
     res.status(400).json({
       error: "Request body is not a valid photo object."
