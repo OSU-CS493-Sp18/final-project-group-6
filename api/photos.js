@@ -4,7 +4,7 @@ const validation = require('../lib/validation');
 /*
  * Schema describing required/optional fields of a photo object.
  */
-const photosSchema = {
+const photoschema = {
   userid: { required: true },
   beerid: { required: true },
   caption: { required: true },
