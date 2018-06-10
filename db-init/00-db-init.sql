@@ -69,7 +69,7 @@ CREATE TABLE `manufacturers` (
 
 LOCK TABLES `manufacturers` WRITE;
 /*!40000 ALTER TABLE `manufacturers` DISABLE KEYS */;
-INSERT INTO `manufacturers` VALUES (1,10,'Portland','Oregon',97220,'5031234567'),(2,2,'Bend','Oregon',97001,'5033214567'),(3,3,'Corvallis','Oregon',97330,'5034444567'),(4,4,'Eugene','Oregon',97401,'5035554567'),(5,5,'Tigad','Oregon',97224,'5036664567'),(6,6,'Salem','Oregon',97301,'5037774567'),(7,7,'Tualatin','Oregon',97305,'5038884567'),(8,8,'West Linn','Oregon',97036,'5039994567'),(9,9,'Vancouver','Washington',98607,'5039999999');
+INSERT INTO `manufacturers` VALUES (1,10,'Portland','Oregon',97220,'5031234567'),(2,2,'Bend','Oregon',97001,'5413254567'),(3,3,'Corvallis','Oregon',97330,'5034444567'),(4,4,'Eugene','Oregon',97401,'5035554567'),(5,5,'Tigard','Oregon',97224,'5036664567'),(6,6,'Salem','Oregon',97301,'5037774567'),(7,7,'Tualatin','Oregon',97305,'5038884567'),(8,8,'West Linn','Oregon',97036,'5039994567'),(9,9,'Vancouver','Washington',98607,'5039999999'),(10,1,'Oregon City','OR',97045,'5036571823'),(11,11,'Albany','Oregon',97321,'5030942314'),(12,12,'Astoria','Oregon',97103,'5034561232'),(13,13,'Pacific City','Oregon',97135,'5035823457'),(14,14,'Springfield','Oregon',97477,'5038473030'),(15,15,'Redmond','Oregon',97756,'5417773542'),(16,16,'Bandon','Oregon',97411,'5034541265'),(17,17,'Hood River','Oregon',97031,'9714325632'),(18,18,'Medford','Oregon',97501,'5036543213'),(19,19,'Philomath','Oregon',97370,'5037653432'),(20,20,'Sisters','Oregon',97759,'5417773254');
 /*!40000 ALTER TABLE `manufacturers` ENABLE KEYS */;
 UNLOCK TABLES;
 
