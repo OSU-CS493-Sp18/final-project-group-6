@@ -134,7 +134,7 @@ router.put('/:photoID', function (req, res, next) {
     getphotoByID(photoID, mysqlPool)
       .then((existingphoto) => {
         if (existingphoto) {
-          if (updatedphoto.beerid === existingphoto.beerid && updatedphoto.userid === existingphoto.userid) {
+          if (updatedphoto.beerid == existingphoto.beerid && updatedphoto.userid == existingphoto.userid) {
             return replacephotoByID(photoID, updatedphoto, mysqlPool);
           } else {
             return Promise.reject(403);

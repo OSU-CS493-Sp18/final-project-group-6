@@ -170,7 +170,7 @@ router.put('/:reviewID', function (req, res, next) {
         console.log(existingReview);
         console.log(updatedReview);
         if (existingReview) {
-          if (updatedReview.beerid === existingReview.beerid && updatedReview.userid === existingReview.userid) {
+          if (updatedReview.beerid == existingReview.beerid && updatedReview.userid == existingReview.userid) {
             return replaceReviewByID(reviewID, updatedReview, mysqlPool);
           } else {
             return Promise.reject(403);
